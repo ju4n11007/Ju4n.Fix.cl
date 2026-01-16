@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ju4n.Fix - Reparación de PC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables y reset */
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --light: #f5f5f5;
+            --gray: #8a8a8a;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* Header minimalista */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--highlight);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--highlight);
+        }
+
+        .logo i {
+            color: var(--highlight);
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--highlight);
+        }
+
+        .contact-link i {
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 3rem 0;
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Problemas Grid */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 4rem;
+        }
+
+        .problem-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .problem-icon {
+            background-color: var(--accent);
+            color: white;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .problem-content {
+            padding: 25px;
+        }
+
+        .problem-content h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+        }
+
+        .problem-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            background-color: var(--highlight);
+            transform: translateY(-2px);
+        }
+
+        /* Footer minimalista */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo span {
+            color: var(--highlight);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--highlight);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .problems-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .problems-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .logo {
+                font-size: 1.6rem;
+            }
+            
+            .footer-contact {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-screwdriver-wrench"></i>
+                    <span>ju4n</span>.Fix
+                </div>
+                
+                <div class="contact-info">
+                    <a href="https://wa.me/56983693215" target="_blank" class="contact-link">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>+56983693215</span>
+                    </a>
+                    <a href="https://www.instagram.com/ju4n_tech._/" target="_blank" class="contact-link">
+                        <i class="fab fa-instagram"></i>
+                        <span>@ju4n_tech._</span>
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Soluciones Prácticas para Problemas de PC</h1>
+            <p>Guías paso a paso, claras y directas para reparar los problemas más comunes que afectan a tu computadora.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <h2 class="section-title">Problemas Frecuentes</h2>
+        
+        <div class="problems-grid">
+            <!-- Problema 1 -->
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <div class="problem-content">
+                    <h3>PC Lenta</h3>
+                    <p>Tu computadora tarda en iniciar, programas se abren lentamente y el sistema general es lento.</p>
+                    <a href="lento.html" class="btn">Ver Solución Paso a Paso</a>
+                </div>
+            </div>
+            
+            <!-- Problema 2 -->
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="problem-content">
+                    <h3>Pantalla Azul</h3>
+                    <p>Error crítico que detiene el sistema y muestra una pantalla azul con código de error.</p>
+                    <a href="azul.html" class="btn">Ver Solución Paso a Paso</a>
+                </div>
+            </div>
+            
+            <!-- Problema 3 -->
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <div class="problem-content">
+                    <h3>Problemas de Conexión</h3>
+                    <p>No puedes conectarte a Internet o la conexión es inestable e intermitente.</p>
+                    <a href="wifi.html" class="btn">Ver Solución Paso a Paso</a>
+                </div>
+            </div>
+            
+            <!-- Problema 4 -->
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <i class="fas fa-volume-mute"></i>
+                </div>
+                <div class="problem-content">
+                    <h3>Sin Sonido</h3>
+                    <p>El sistema no reproduce ningún sonido o el audio es de mala calidad.</p>
+                    <a href="sonido.html" class="btn">Ver Solución Paso a Paso</a>
+                </div>
+            </div>
+            
+            <!-- Problema 5 -->
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <i class="fas fa-thermometer-full"></i>
+                </div>
+                <div class="problem-content">
+                    <h3>Sobrecalentamiento</h3>
+                    <p>La PC se apaga sola, hace mucho ruido o el rendimiento baja debido al calor.</p>
+                    <a href="sobrecalentamiento.html" class="btn">Ver Solución Paso a Paso</a>
+                </div>
+            </div>
+            
+            <!-- Problema 6 -->
+            <div class="problem-card">
+                <div class="problem-icon">
+                    <i class="fas fa-virus"></i>
+                </div>
+                <div class="problem-content">
+                    <h3>Virus y Malware</h3>
+                    <p>Pop-ups no deseados, lentitud extrema, programas que se instalan solos.</p>
+                    <a href="virus.html" class="btn">Ver Solución Paso a Paso</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Sección Mini-Tips para Windows -->
+<section id="mini-tips" style="padding: 4rem 0; background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%); color: white;">
+    <div class="container">
+        <h2 class="section-title" style="color: white; margin-bottom: 3rem;">Mini-Tips para Windows</h2>
+        
+        <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-bottom: 3rem;">
+            
+            <!-- Tip 1: Activar Windows con CMD -->
+            <div class="tip-card" style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); transition: transform 0.3s;">
+                <div class="tip-icon" style="background: #e94560; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-terminal" style="font-size: 1.8rem;"></i>
+                </div>
+                <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: white;">Activar Windows con CMD</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Comandos para activar Windows 10/11 de forma legal usando KMS.</p>
+                <button class="tip-btn" onclick="showTip('windows-activation')" style="background: #e94560; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
+                    Ver Comandos
+                </button>
+            </div>
+            
+            <!-- Tip 2: Configuraciones para Laptops -->
+            <div class="tip-card" style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); transition: transform 0.3s;">
+                <div class="tip-icon" style="background: #3498db; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-laptop" style="font-size: 1.8rem;"></i>
+                </div>
+                <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: white;">Optimizar Laptops</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Configuraciones para mejorar duración de batería y rendimiento.</p>
+                <button class="tip-btn" onclick="showTip('laptop-optimization')" style="background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
+                    Ver Configuraciones
+                </button>
+            </div>
+            
+            <!-- Tip 3: USB Booteable -->
+            <div class="tip-card" style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); transition: transform 0.3s;">
+                <div class="tip-icon" style="background: #2ecc71; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-usb" style="font-size: 1.8rem;"></i>
+                </div>
+                <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: white;">Crear USB Booteable</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Guía completa para crear USB de instalación de Windows.</p>
+                <button class="tip-btn" onclick="showTip('usb-bootable')" style="background: #2ecc71; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
+                    Ver Guía
+                </button>
+            </div>
+            
+            <!-- Tip 4: Soluciones instalación Windows -->
+            <div class="tip-card" style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); transition: transform 0.3s;">
+                <div class="tip-icon" style="background: #9b59b6; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-cogs" style="font-size: 1.8rem;"></i>
+                </div>
+                <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: white;">Problemas al Instalar</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Soluciones para errores comunes durante la instalación.</p>
+                <button class="tip-btn" onclick="showTip('install-problems')" style="background: #9b59b6; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
+                    Ver Soluciones
+                </button>
+            </div>
+            
+            <!-- Tip 5: Trucos Informáticos -->
+            <div class="tip-card" style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); transition: transform 0.3s;">
+                <div class="tip-icon" style="background: #f39c12; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-lightbulb" style="font-size: 1.8rem;"></i>
+                </div>
+                <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: white;">Trucos y Consejos</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Trucos útiles que todos deberían conocer.</p>
+                <button class="tip-btn" onclick="showTip('pc-tricks')" style="background: #f39c12; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
+                    Ver Trucos
+                </button>
+            </div>
+            
+            <!-- Tip 6: Configuraciones PC Escritorio -->
+            <div class="tip-card" style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); transition: transform 0.3s;">
+                <div class="tip-icon" style="background: #1abc9c; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-desktop" style="font-size: 1.8rem;"></i>
+                </div>
+                <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: white;">Optimizar PC Escritorio</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 20px;">Ajustes para máximo rendimiento en computadoras de escritorio.</p>
+                <button class="tip-btn" onclick="showTip('desktop-optimization')" style="background: #1abc9c; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
+                    Ver Ajustes
+                </button>
+            </div>
+        </div>
+        
+        <!-- Modal para mostrar los tips -->
+        <div id="tipModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 2000; overflow-y: auto; padding: 20px;">
+            <div style="background: white; max-width: 800px; margin: 50px auto; border-radius: 10px; padding: 30px; position: relative; color: #333;">
+                <button onclick="closeTip()" style="position: absolute; top: 15px; right: 15px; background: #e94560; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; font-size: 1.2rem; cursor: pointer;">×</button>
+                <div id="tipContent"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Agregar este JavaScript al final del body del index.html -->
+<script>
+    // Datos de los tips
+    const tipsData = {
+        'windows-activation': {
+            title: 'Activar Windows con CMD',
+            content: `
+                <h2 style="color: #0f3460; margin-bottom: 20px;">Métodos para Activar Windows</h2>
+                
+                <div class="method" style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <h3 style="color: #e94560; margin-bottom: 10px;">Método 1: Activación KMS (Empresas/Instituciones)</h3>
+                    <p>Abre CMD como <strong>administrador</strong> y ejecuta estos comandos en orden:</p>
+                    <div style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; margin: 15px 0; font-family: monospace; overflow-x: auto;">
+                        <code>slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX</code><br><br>
+                        <code>slmgr /skms kms8.msguides.com</code><br><br>
+                        <code>slmgr /ato</code>
+                    </div>
+                    <p><strong>Nota:</strong> Esto requiere conexión a internet y solo funciona con versiones específicas.</p>
+                </div>
+                
+                <div class="method" style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <h3 style="color: #e94560; margin-bottom: 10px;">Método 2: Script de Activación MAS</h3>
+                    <p>El método más confiable actualmente:</p>
+                    <ol style="margin-left: 20px;">
+                        <li>Descarga el script MAS desde GitHub (búscalo como "MAS Activator")</li>
+                        <li>Desactiva tu antivirus temporalmente (Windows Defender puede bloquearlo)</li>
+                        <li>Ejecuta el archivo .cmd como administrador</li>
+                        <li>Selecciona la opción para activar Windows</li>
+                        <li>Reinicia tu computadora</li>
+                    </ol>
+                    <p><strong>Ventaja:</strong> Activación permanente sin servidores externos.</p>
+                </div>
+                
+                <div class="method">
+                    <h3 style="color: #e94560; margin-bottom: 10px;">Método 3: Claves Genuinas Gratis</h3>
+                    <p>Algunas instituciones ofrecen claves gratuitas:</p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Estudiantes:</strong> DreamSpark/Imagine</li>
+                        <li><strong>Empleados Microsoft:</strong> MSDN</li>
+                        <li><strong>Universidades:</strong> Muchas tienen acuerdos con Microsoft</li>
+                    </ul>
+                    <p style="margin-top: 15px; padding: 15px; background: #e8f4fc; border-radius: 5px;">
+                        <strong>⚠️ Advertencia:</strong> Las claves de activadores piratas pueden contener malware. 
+                        Siempre descarga de fuentes confiables y verifica los hashes MD5/SHA.
+                    </p>
+                </div>
+            `
+        },
+        
+        'laptop-optimization': {
+            title: 'Optimizar Laptops para Mejor Rendimiento',
+            content: `
+                <h2 style="color: #0f3460; margin-bottom: 20px;">Configuraciones Específicas para Laptops</h2>
+                
+                <div class="optimization" style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <h3 style="color: #3498db; margin-bottom: 10px;">1. Optimizar Batería</h3>
+                    <p><strong>Plan de energía personalizado:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>Ve a "Configuración" > "Sistema" > "Alimentación y suspensión"</li>
+                        <li>Haz clic en "Configuración de energía adicional"</li>
+                        <li>Crea un nuevo plan: "Equilibrado (recomendado)"</li>
+                        <li>Configura "Cambiar configuración del plan" > "Cambiar configuración avanzada de energía"</li>
+                        <li>Ajusta:
+                            <ul style="margin-left: 20px;">
+                                <li><strong>Estado máximo del procesador:</strong> 99% (previene turbo boost)</li>
+                                <li><strong>Política de refrigeración del sistema:</strong> Pasiva</li>
+                                <li><strong>Estado mínimo del procesador:</strong> 5%</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="optimization" style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <h3 style="color: #3498db; margin-bottom: 10px;">2. Reducir Temperatura</h3>
+                    <ol style="margin-left: 20px;">
+                        <li><strong>Limpiar ventiladores:</strong> Usa aire comprimido cada 3-6 meses</li>
+                        <li><strong>Base refrigeradora:</strong> Inversión que vale la pena para gaming</li>
+                        <li><strong>Control de ventiladores:</strong> Usa SpeedFan para curvas agresivas</li>
+                        <li><strong>Undervolting:</strong> Usa ThrottleStop para reducir voltaje del CPU (avanzado)</li>
+                    </ol>
+                </div>
+                
+                <div class="optimization" style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <h3 style="color: #3498db; margin-bottom: 10px;">3. Mejorar Rendimiento Juegos</h3>
+                    <ol style="margin-left: 20px;">
+                        <li><strong>GPU dedicada:</strong> Configura juegos para usar la GPU dedicada (NVIDIA Control Panel o AMD Radeon Software)</li>
+                        <li><strong>Modo rendimiento:</strong> Conéctala a corriente y activa "Modo de rendimiento" en la app del fabricante</li>
+                        <li><strong>Actualiza drivers:</strong> Siempre últimos drivers de gráficos</li>
+                        <li><strong>Resolución:</strong> Juega en resolución nativa del monitor para mejor calidad</li>
+                    </ol>
+                </div>
+                
+                <div class="optimization">
+                    <h3 style="color: #3498db; margin-bottom: 10px;">4. Configuraciones Windows Específicas</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 10px;">
+                        <strong>Desactivar:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Efectos de transparencia</li>
+                            <li>Animaciones de Windows</li>
+                            <li>Indexación de búsqueda (si usas SSD)</li>
+                            <li>Apps en segundo plano no esenciales</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        },
+        
+        'usb-bootable': {
+            title: 'Crear USB Booteable de Windows',
+            content: `
+                <h2 style="color: #0f3460; margin-bottom: 20px;">Guía Completa para USB de Instalación</h2>
+                
+                <div class="method" style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <h3 style="color: #2ecc71; margin-bottom: 10px;">Requisitos Previos</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>USB:</strong> 8GB mínimo (16GB recomendado) USB 3.0 preferible</li>
+                        <li><strong>ISO de Windows:</strong> Descárgalo desde Microsoft oficial</li>
+                        <li><strong>PC funcionando:</strong> Para crear el USB</li>
+                        <li><strong>Backup:</strong> Haz backup de tus datos importantes</li>
+                    </ul>
+                </div>
+                
+                <div class="method" style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <h3 style="color: #2ecc71; margin-bottom: 10px;">Método 1: Herramienta Oficial Microsoft</h3>
+                    <p><strong>El método más seguro y recomendado:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>Descarga "Media Creation Tool" desde microsoft.com</li>
+                        <li>Ejecuta el programa como administrador</li>
+                        <li>Selecciona "Crear medios de instalación"</li>
+                        <li>Elige idioma, edición y arquitectura (64-bit recomendado)</li>
+                        <li>Selecciona "Unidad flash USB"</li>
+                        <li>Elige tu USB de la lista</li>
+                        <li>Espera a que descargue y cree el USB (20-60 minutos)</li>
+                        <li>¡Listo! Tu USB booteable está preparado</li>
+                    </ol>
+                </div>
+                
+                <div class="method" style="margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+                    <h3 style="color: #2ecc71; margin-bottom: 10px;">Método 2: Rufus (Para BIOS Legacy/UEFI)</h3>
+                    <p><strong>Para usuarios avanzados o BIOS antiguas:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>Descarga Rufus desde rufus.ie</li>
+                        <li>Conecta tu USB (se formateará, ¡backup!)</li>
+                        <li>Abre Rufus como administrador</li>
+                        <li>Selecciona tu USB en "Dispositivo"</li>
+                        <li>En "Selección de arranque", elige tu ISO de Windows</li>
+                        <li><strong>Esquema de partición:</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>Para BIOS Legacy: MBR</li>
+                                <li>Para UEFI: GPT</li>
+                            </ul>
+                        </li>
+                        <li>Sistema de archivos: NTFS</li>
+                        <li>Haz clic en "Empezar"</li>
+                        <li>Espera a que complete (más rápido que Media Creation Tool)</li>
+                    </ol>
+                </div>
+                
+                <div class="method">
+                    <h3 style="color: #2ecc71; margin-bottom: 10px;">Método 3: Ventoy (Múltiples ISOs en un USB)</h3>
+                    <p><strong>Para técnicos que necesitan varios sistemas en un USB:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>Descarga Ventoy desde ventoy.net</li>
+                        <li>Ejecuta Ventoy2Disk.exe</li>
+                        <li>Selecciona tu USB y haz clic en "Install"</li>
+                        <li>Esto creará dos particiones en tu USB</li>
+                        <li>Copia tus ISOs (Windows, Linux, etc.) a la partición grande</li>
+                        <li>Al bootear, Ventoy te mostrará menú para elegir qué ISO bootear</li>
+                    </ol>
+                    <p style="margin-top: 15px; padding: 15px; background: #e8f4fc; border-radius: 5px;">
+                        <strong>💡 Tip:</strong> Después de crear el USB, prueba que bootea en tu PC antes de usarlo para instalación.
+                    </p>
+                </div>
+            `
+        },
+        
+        'install-problems': {
+            title: 'Solucionar Problemas al Instalar Windows',
+            content: `
+                <h2 style="color: #0f3460; margin-bottom: 20px;">Errores Comunes y Sus Soluciones</h2>
+                
+                <div class="problem" style="margin-bottom: 25px; padding: 20px; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #9b59b6;">
+                    <h3 style="color: #9b59b6; margin-bottom: 10px;">1. "Windows no se puede instalar en esta unidad"</h3>
+                    <p><strong>Solución:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>En pantalla de selección de disco, elimina todas las particiones</li>
+                        <li>Selecciona el espacio no asignado y haz clic en "Siguiente"</li>
+                        <li>Si no funciona, presiona Shift+F10 para abrir CMD</li>
+                        <li>Ejecuta estos comandos:
+                            <div style="background: #2c3e50; color: #ecf0f1; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                                diskpart<br>
+                                list disk<br>
+                                select disk 0<br>
+                                clean<br>
+                                convert gpt (o mbr para BIOS legacy)<br>
+                                exit<br>
+                                exit
+                            </div>
+                        </li>
+                        <li>Vuelve a la pantalla de instalación y actualiza</li>
+                    </ol>
+                </div>
+                
+                <div class="problem" style="margin-bottom: 25px; padding: 20px; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #9b59b6;">
+                    <h3 style="color: #9b59b6; margin-bottom: 10px;">2. Instalación se congela o reinicia</h3>
+                    <p><strong>Causas comunes y soluciones:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>USB defectuoso:</strong> Crea el USB nuevamente con otro programa</li>
+                        <li><strong>Puerto USB 3.0:</strong> Prueba con puerto USB 2.0 (azul vs negro)</li>
+                        <li><strong>Memoria RAM:</strong> Ejecuta MemTest86 para verificar errores</li>
+                        <li><strong>ISO corrupta:</strong> Verifica hash SHA1 del ISO</li>
+                        <li><strong>Disco duro:</strong> Prueba con otro disco si es posible</li>
+                    </ul>
+                </div>
+                
+                <div class="problem" style="margin-bottom: 25px; padding: 20px; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #9b59b6;">
+                    <h3 style="color: #9b59b6; margin-bottom: 10px;">3. No encuentra controladores</h3>
+                    <p><strong>Error: "No encontramos controladores" al seleccionar disco</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>Descarga controladores SATA/RAID/NVMe del fabricante de tu placa madre</li>
+                        <li>Cópialos a una USB adicional (FAT32)</li>
+                        <li>En instalación, haz clic en "Cargar controlador"</li>
+                        <li>Navega a la carpeta con los controladores</li>
+                        <li>Selecciona el .inf correspondiente</li>
+                        <li>Esto es común en:
+                            <ul style="margin-left: 20px;">
+                                <li>Discos NVMe M.2</li>
+                                <li>Configuraciones RAID</li>
+                                <li>Placas madre muy nuevas o muy antiguas</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="problem" style="padding: 20px; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #9b59b6;">
+                    <h3 style="color: #9b59b6; margin-bottom: 10px;">4. Error 0xC0000005 o similares</h3>
+                    <p><strong>Solución paso a paso:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>Verifica integridad del USB booteable</li>
+                        <li>Desconecta todos los periféricos no esenciales</li>
+                        <li>Actualiza BIOS/UEFI a última versión</li>
+                        <li>Desactiva Secure Boot temporalmente en BIOS</li>
+                        <li>Cambia de UEFI a Legacy (o viceversa) en BIOS</li>
+                        <li>Prueba con solo un módulo de RAM</li>
+                        <li>Si usas overclock, vuelve a valores stock</li>
+                    </ol>
+                    <p style="margin-top: 15px;"><strong>Último recurso:</strong> Prueba con versión anterior de Windows (ej: Windows 10 21H2 en lugar de 22H2)</p>
+                </div>
+            `
+        },
+        
+        'pc-tricks': {
+            title: 'Trucos y Consejos Informáticos Útiles',
+            content: `
+                <h2 style="color: #0f3460; margin-bottom: 20px;">Trucos que Todos Deberían Conocer</h2>
+                
+                <div class="trick" style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%); border-radius: 5px; border-left: 4px solid #f39c12;">
+                    <h3 style="color: #f39c12; margin-bottom: 10px;">🔄 Trucos de Productividad</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Win + Shift + S:</strong> Captura de pantalla con recorte (mejor que Print Screen)</li>
+                        <li><strong>Win + V:</strong> Historial del portapapeles (múltiples copias)</li>
+                        <li><strong>Win + . (punto):</strong> Selector de emojis 😊 en cualquier aplicación</li>
+                        <li><strong>Win + L:</strong> Bloquea instantáneamente tu PC</li>
+                        <li><strong>Ctrl + Shift + Esc:</strong> Administrador de tareas directo</li>
+                    </ul>
+                </div>
+                
+                <div class="trick" style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #e8f4fc 0%, #d1ecf1 100%); border-radius: 5px; border-left: 4px solid #3498db;">
+                    <h3 style="color: #3498db; margin-bottom: 10px;">🔧 Comandos CMD Útiles</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 10px;">
+                        <div>
+                            <strong>Verificar disco:</strong>
+                            <div style="background: #2c3e50; color: white; padding: 8px; border-radius: 3px; margin-top: 5px; font-family: monospace; font-size: 0.9rem;">
+                                chkdsk C: /f /r
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Liberar DNS:</strong>
+                            <div style="background: #2c3e50; color: white; padding: 8px; border-radius: 3px; margin-top: 5px; font-family: monospace; font-size: 0.9rem;">
+                                ipconfig /flushdns
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Ver IP:</strong>
+                            <div style="background: #2c3e50; color: white; padding: 8px; border-radius: 3px; margin-top: 5px; font-family: monospace; font-size: 0.9rem;">
+                                ipconfig /all
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Ping a Google:</strong>
+                            <div style="background: #2c3e50; color: white; padding: 8px; border-radius: 3px; margin-top: 5px; font-family: monospace; font-size: 0.9rem;">
+                                ping 8.8.8.8 -t
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="trick" style="margin-bottom: 25px; padding: 20px; background: linear-gradient(135deg, #f0f8ff 0%, #e0f2ff 100%); border-radius: 5px; border-left: 4px solid #0f3460;">
+                    <h3 style="color: #0f3460; margin-bottom: 10px;">⚡ Acelerar Windows</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Desactivar animaciones:</strong> Sistema > Acerca de > Configuración avanzada > Rendimiento</li>
+                        <li><strong>Limpiar temp:</strong> Win + R > %temp% > Ctrl + A > Delete</li>
+                        <li><strong>Desfragmentar SSD NO:</strong> Los SSD no se desfragmentan, solo optimizan</li>
+                        <li><strong>Prefetch/Superfetch:</strong> Para SSDs, desactívalo en Services.msc</li>
+                        <li><strong>Inicio rápido:</strong> Desactívalo si tienes problemas de apagado</li>
+                    </ul>
+                </div>
+                
+                <div class="trick" style="padding: 20px; background: linear-gradient(135deg, #f9f2ff 0%, #e8d4f7 100%); border-radius: 5px; border-left: 4px solid #9b59b6;">
+                    <h3 style="color: #9b59b6; margin-bottom: 10px;">🔐 Seguridad y Mantenimiento</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Verifica integridad Windows:</strong> <code>sfc /scannow</code> en CMD admin</li>
+                        <li><strong>Backup drivers:</strong> Usa Double Driver antes de formatear</li>
+                        <li><strong>Clave producto Windows:</strong> <code>wmic path softwarelicensingservice get OA3xOriginalProductKey</code></li>
+                        <li><strong>Contraseña BIOS:</strong> Retira pila CMOS 5 minutos para reset</li>
+                        <li><strong>Recuperar archivos borrados:</strong> Recuva (gratis) antes de escribir en el disco</li>
+                    </ul>
+                </div>
+            `
+        },
+        
+        'desktop-optimization': {
+            title: 'Optimizar PC de Escritorio para Máximo Rendimiento',
+            content: `
+                <h2 style="color: #0f3460; margin-bottom: 20px;">Configuraciones Específicas para Desktop</h2>
+                
+                <div class="optimization" style="margin-bottom: 25px; padding: 20px; background: #e8f8f5; border-radius: 5px; border-left: 4px solid #1abc9c;">
+                    <h3 style="color: #1abc9c; margin-bottom: 10px;">1. Ajustes BIOS/UEFI para Rendimiento</h3>
+                    <p><strong>Configuraciones importantes (varían por placa madre):</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>XMP/DOCP:</strong> Actívalo para que RAM funcione a velocidad anunciada</li>
+                        <li><strong>Resizable BAR/SAM:</strong> Para tarjetas gráficas modernas (AMD/NVIDIA)</li>
+                        <li><strong>Fast Boot:</strong> Desactívalo si tienes problemas de estabilidad</li>
+                        <li><strong>CSM/Legacy:</strong> Desactívalo si usas Windows 10/11 (solo UEFI)</li>
+                        <li><strong>PCIe Gen:</strong> Configura a Gen4 si tu hardware lo soporta</li>
+                    </ul>
+                </div>
+                
+                <div class="optimization" style="margin-bottom: 25px; padding: 20px; background: #e8f4fc; border-radius: 5px; border-left: 4px solid #3498db;">
+                    <h3 style="color: #3498db; margin-bottom: 10px;">2. Overclock Seguro (Para Gamers)</h3>
+                    <p><strong>Procesador (CPU):</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>Usa Intel XTU o Ryzen Master según tu procesador</li>
+                        <li>Aumenta multiplicador gradualmente (ej: de 40x a 42x)</li>
+                        <li>Prueba estabilidad con Prime95 o Cinebench</li>
+                        <li>Monitoriza temperaturas (no sobrepases 85°C)</li>
+                        <li>Para overclock avanzado, ajusta voltaje Vcore (¡con cuidado!)</li>
+                    </ol>
+                    
+                    <p style="margin-top: 15px;"><strong>Memoria RAM:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>XMP es overclock automático seguro</li>
+                        <li>Para manual: baja timings (CL16 a CL14) o aumenta frecuencia (3200 a 3600MHz)</li>
+                        <li>Prueba con MemTest86 (0 errores después de 4 pases)</li>
+                    </ol>
+                </div>
+                
+                <div class="optimization" style="margin-bottom: 25px; padding: 20px; background: #fef9e7; border-radius: 5px; border-left: 4px solid #f39c12;">
+                    <h3 style="color: #f39c12; margin-bottom: 10px;">3. Configuraciones NVIDIA/AMD</h3>
+                    <p><strong>Panel Control NVIDIA:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Gestión 3D > Ajustes globales:</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>Power management: Preferir rendimiento máximo</li>
+                                <li>Low Latency Mode: Ultra</li>
+                                <li>Texture filtering: Alto rendimiento</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ajustar configuración de imagen:</strong> Enfocado en rendimiento</li>
+                    </ul>
+                    
+                    <p style="margin-top: 15px;"><strong>Software AMD Radeon:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Radeon Anti-Lag: Activado</li>
+                        <li>Radeon Boost: Activado para juegos competitivos</li>
+                        <li>Image Sharpening: Según preferencia</li>
+                    </ul>
+                </div>
+                
+                <div class="optimization" style="padding: 20px; background: #f4ecf7; border-radius: 5px; border-left: 4px solid #9b59b6;">
+                    <h3 style="color: #9b59b6; margin-bottom: 10px;">4. Windows para Máximo Rendimiento</h3>
+                    <ol style="margin-left: 20px;">
+                        <li><strong>Plan de energía:</strong> Alto rendimiento (no equilibrado)</li>
+                        <li><strong>Desactivar:</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>Indexación de búsqueda (para SSDs)</li>
+                                <li>Efectos visuales (excepto suavizado de fuentes)</li>
+                                <li>Apps en segundo plano</li>
+                                <li>Notificaciones no esenciales</li>
+                            </ul>
+                        </li>
+                        <li><strong>Prioridad procesos:</strong> En administrador de tareas, da alta prioridad a juegos</li>
+                        <li><strong>Game Mode:</strong> Activado en Configuración > Juegos</li>
+                        <li><strong>Actualizaciones:</strong> Mantén siempre drivers gráficos actualizados</li>
+                    </ol>
+                    <p style="margin-top: 15px; padding: 10px; background: #d5f4e6; border-radius: 5px;">
+                        <strong>💡 Pro Tip:</strong> Para PCs gaming, considera desactivar Hyper-Threading/SMT en BIOS 
+                        para algunos juegos que funcionan mejor con cores físicos.
+                    </p>
+                </div>
+            `
+        }
+    };
+
+    // Funciones para mostrar/ocultar tips
+    function showTip(tipId) {
+        const modal = document.getElementById('tipModal');
+        const content = document.getElementById('tipContent');
+        
+        if (tipsData[tipId]) {
+            content.innerHTML = tipsData[tipId].content;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Efecto de entrada
+            setTimeout(() => {
+                modal.querySelector('div').style.opacity = '1';
+                modal.querySelector('div').style.transform = 'translateY(0)';
+            }, 10);
+        }
+    }
+
+    function closeTip() {
+        const modal = document.getElementById('tipModal');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Cerrar modal al hacer clic fuera
+    document.getElementById('tipModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeTip();
+        }
+    });
+
+    // Efectos hover en tarjetas
+    document.addEventListener('DOMContentLoaded', function() {
+        const tipCards = document.querySelectorAll('.tip-card');
+        
+        tipCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+        
+        // Efecto modal
+        const modalDiv = document.querySelector('#tipModal > div');
+        if (modalDiv) {
+            modalDiv.style.opacity = '0';
+            modalDiv.style.transform = 'translateY(-30px)';
+            modalDiv.style.transition = 'all 0.3s ease';
+        }
+    });
+
+    // Tecla Escape para cerrar modal
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeTip();
+        }
+    });
+</script>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>ju4n</span>.Fix
+                </div>
+                
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <p><i class="fab fa-whatsapp"></i> WhatsApp: +56983693215</p>
+                    </div>
+                    <div class="contact-item">
+                        <p><i class="fab fa-instagram"></i> Instagram: @ju4n_tech._</p>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://wa.me/56983693215" target="_blank" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ju4n_tech._/" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:contacto@ju4nfix.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2023 ju4n.Fix. Soluciones prácticas para problemas de PC.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Funcionalidad básica para la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Botón de menú móvil
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const contactInfo = document.querySelector('.contact-info');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                if (contactInfo.style.display === 'flex') {
+                    contactInfo.style.display = 'none';
+                } else {
+                    contactInfo.style.display = 'flex';
+                    contactInfo.style.flexDirection = 'column';
+                    contactInfo.style.position = 'absolute';
+                    contactInfo.style.top = '100%';
+                    contactInfo.style.right = '0';
+                    contactInfo.style.backgroundColor = 'var(--primary)';
+                    contactInfo.style.padding = '20px';
+                    contactInfo.style.gap = '15px';
+                    contactInfo.style.borderLeft = '3px solid var(--highlight)';
+                    contactInfo.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+                }
+            });
+            
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (!mobileMenuBtn.contains(e.target) && !contactInfo.contains(e.target)) {
+                    if (window.innerWidth <= 768) {
+                        contactInfo.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Ajustar menú en cambio de tamaño de ventana
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    contactInfo.style.display = 'flex';
+                    contactInfo.style.flexDirection = 'row';
+                    contactInfo.style.position = 'static';
+                    contactInfo.style.backgroundColor = 'transparent';
+                    contactInfo.style.padding = '0';
+                    contactInfo.style.boxShadow = 'none';
+                    contactInfo.style.borderLeft = 'none';
+                } else {
+                    contactInfo.style.display = 'none';
+                }
+            });
+            
+            // Simular carga de página de solución
+            const solutionLinks = document.querySelectorAll('.btn');
+            
+            solutionLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // En una implementación real, esto redirigiría a la página correspondiente
+                    // Aquí solo mostramos un mensaje
+                    if (this.getAttribute('href').includes('.html')) {
+                        // Permitir la navegación normal a archivos HTML
+                        return true;
+                    }
+                    
+                    e.preventDefault();
+                    const problemTitle = this.closest('.problem-content').querySelector('h3').textContent;
+                    alert(`Redirigiendo a la solución detallada para: "${problemTitle}".\n\nEn una implementación completa, esto cargaría una guía paso a paso.`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
